@@ -1,316 +1,315 @@
-### Exercício 1: Verificação de Qualidade de Dados
-# Você está analisando um conjunto de dados de vendas e precisa garantir 
-# que todos os registros tenham valores positivos para `quantidade` e `preço`. 
-# Escreva um programa que verifique esses campos e imprima "Dados válidos" se ambos 
-# forem positivos ou "Dados inválidos" caso contrário.
+# Exercise 1: Data Quality Check
+# You are analyzing a sales dataset and need to ensure that all records have positive values for quantity and price.
+# Write a program that checks these fields and prints "Valid data" if both are positive, or "Invalid data" otherwise.
 
-qtd = float(input("Digite a quantidade: "))
-preco = float(input("Digite o preço: "))
+quantity = float(input("Enter the quantity: "))
+price = float(input("Enter the price: "))
 
-if qtd > 0 and preco > 0:
-    print("Dados válidos")
+if quantity > 0 and price > 0:
+    print("Valid data")
 else:
-    print("Dados inválidos")
+    print("Invalid data")
 
 
-### Exercício 2: Classificação de Dados de Sensor
-# Imagine que você está trabalhando com dados de sensores IoT. 
-# Os dados incluem medições de temperatura. Você precisa classificar cada leitura 
-# como 'Baixa', 'Normal' ou 'Alta'. Considerando que:
-# Temperatura < 18°C é 'Baixa'
-# Temperatura >= 18°C e <= 26°C é 'Normal'
-# Temperatura > 26°C é 'Alta'
+# Exercise 2: Sensor Data Classification
+# Imagine you are working with IoT sensor data. The data includes temperature measurements.
+# You need to classify each reading as 'Low', 'Normal', or 'High'. Given that:
+# Temperature < 18°C is 'Low'
+# Temperature >= 18°C and <= 26°C is 'Normal'
+# Temperature > 26°C is 'High'
 
-temperatura = 22
+temperature = 22
 
-if temperatura < 18:
-    print("Temperatura está baixa.")
-elif temperatura >= 18 and temperatura <= 26:
-    print("Temperatura está normal")
+if temperature < 18:
+    print("Temperature is low.")
+elif temperature >= 18 and temperature <= 26:
+    print("Temperature is normal")
 else:
-    print("A temperatura está elevada")
+    print("Temperature is high")
 
-### Exercício 3: Filtragem de Logs por Severidade
-# Você está analisando logs de uma aplicação e precisa filtrar mensagens 
-# com severidade 'ERROR'. Dado um registro de log em formato de dicionário 
-# como `log = {'timestamp': '2021-06-23 10:00:00', 'level': 'ERROR', 'message': 'Falha na conexão'}`, 
-# escreva um programa que imprima a mensagem se a severidade for 'ERROR'.
+
+# Exercise 3: Log Filtering by Severity
+# You are analyzing logs from an application and need to filter messages with severity 'ERROR'.
+# Given a log record in dictionary format like log = {'timestamp': '2021-06-23 10:00:00', 'level': 'ERROR', 'message': 'Connection failed'},
+# write a program that prints the message if the severity is 'ERROR'.
 
 log = {
     'timestamp': '2021-06-23 10:00:00',
     'level': 'ERROR',
-    'message': 'Falha na conexão'
+    'message': 'Connection failed'
 }
 
 if log['level'] == 'ERROR':
     print(log['message'])
 
-### Exercício 4: Validação de Dados de Entrada
-# Antes de processar os dados de usuários em um sistema de recomendação, 
-# você precisa garantir que cada usuário tenha idade entre 18 e 65 anos e tenha 
-# fornecido um email válido. Escreva um programa que valide essas condições 
-# e imprima "Dados de usuário válidos" ou o erro específico encontrado.
 
-idade_usuario = 28
+# Exercise 4: Input Data Validation
+# Before processing user data in a recommendation system,
+# you need to ensure that each user is between 18 and 65 years old and has provided a valid email.
+# Write a program to validate these conditions and print "Valid user data" or the specific error found.
+
+user_age = 28
 email = "joao.sgobero@gmail.com"
 
-if idade_usuario < 18 or idade_usuario > 65:
-    print("Sua idade está fora das diretrizes da empresa.")
+if user_age < 18 or user_age > 65:
+    print("Your age is outside the company's guidelines.")
 elif "@" not in email:
-    print("O email é invalido pois não contem '@'.")
+    print("The email is invalid because it doesn't contain '@'.")
 elif "." not in email:
-    print("O email é invalido pois não contem '.'.")
+    print("The email is invalid because it doesn't contain '.'.")
 else:
-    print("Os dados são válidos")
+    print("The data is valid")
 
 
-### Exercício 5: Detecção de Anomalias em Dados de Transações
-# Você está trabalhando em um sistema de detecção de fraude e precisa identificar 
-# transações suspeitas. Uma transação é considerada suspeita se o valor for superior 
-# a R$ 10.000 ou se ocorrer fora do horário comercial (antes das 9h ou depois das 18h). 
-# Dada uma transação como `transacao = {'valor': 12000, 'hora': 20}`, verifique se ela é suspeita.
+# Exercise 5: Transaction Anomaly Detection
+# You are working on a fraud detection system and need to identify suspicious transactions.
+# A transaction is considered suspicious if the amount is greater than R$ 10,000 or if it occurs outside business hours (before 9 am or after 6 pm).
+# Given a transaction like transaction = {'value': 12000, 'hour': 20}, check if it is suspicious.
 
-transacao = {'valor': 12000, 'hora': 20}
+transaction = {'value': 12000, 'hour': 20}
 
-if transacao['valor'] > 10000 or (transacao['hora'] < 9 or transacao['hora'] > 18):
-    print("Essa transação é suspeita")
+if transaction['value'] > 10000 or (transaction['hour'] < 9 or transaction['hour'] > 18):
+    print("This transaction is suspicious")
 else:
-    print("Transação aprovada.")
+    print("Transaction approved.")
 
 
-### Exercício 6. Contagem de Palavras em Textos
-# Objetivo:** Dado um texto, contar quantas vezes cada palavra única aparece nele.
+# Exercise 6: Word Count in Texts
+# Given a text, count how many times each unique word appears in it.
 
-texto_sujo = "Olá, mundo! O mundo é belo. Belo, belo mundo."
-print(f"Texto original: {texto_sujo}")
+dirty_text = "Hello, world! The world is beautiful. Beautiful, beautiful world."
+print(f"Original text: {dirty_text}")
 
-#Limpeza e Preparação de Dados
-texto_quase_limpo = texto_sujo.lower()
-pontuacoes_a_remover = ",.!?;:"
+# Clean and Prepare Data
+clean_text = dirty_text.lower()
+punctuations_to_remove = ",.!?;:"
 
-for pontuacao in pontuacoes_a_remover:
-    # ...substitua essa pontuação por nada no nosso texto.
-    texto_quase_limpo = texto_quase_limpo.replace(pontuacao, "")
+for punctuation in punctuations_to_remove:
+    # Replace the punctuation with nothing in our text.
+    clean_text = clean_text.replace(punctuation, "")
 
-texto_limpo = texto_quase_limpo
-print(f"Texto limpo: {texto_limpo}")
+print(f"Clean text: {clean_text}")
 
-#Quebrar o texto limpo em palavras
-lista_de_palavras = texto_limpo.split()
+# Break the cleaned text into words
+word_list = clean_text.split()
 
-#Preparar o "contador
-contagem_palavras = {}
+# Prepare the "counter"
+word_count = {}
 
-#O Loop de Contagem (permanece exatamente o mesmo!)
-for palavra in lista_de_palavras:
-    if palavra in contagem_palavras:
-        contagem_palavras[palavra] += 1
+# The Counting Loop (stays exactly the same!)
+for word in word_list:
+    if word in word_count:
+        word_count[word] += 1
     else:
-        contagem_palavras[palavra] = 1
+        word_count[word] = 1
 
-#Apresentar o resultado
-print("\nContagem final de palavras (versão 2.0):")
-print(contagem_palavras)
-
-### Exercício 7. Normalização de Dados
-# Objetivo:** Normalizar uma lista de números para que fiquem na escala de 0 a 1.
-
-numeros = [10, 20, 30, 40, 50]
-minimo = min(numeros)  # 10
-maximo = max(numeros)  # 50
-
-normalizados = [(x - minimo) / (maximo - minimo) for x in numeros]
-print(normalizados)
+# Display the result
+print("\nFinal word count (version 2.0):")
+print(word_count)
 
 
-### Exercício 8. Filtragem de Dados Faltantes
-# Objetivo:** Dada uma lista de dicionários representando dados de usuários, filtrar aqueles que têm um campo específico faltando
+# Exercise 7: Data Normalization
+# Normalize a list of numbers to a scale from 0 to 1.
 
-usuarios = [
-    {"nome": "Ana", "idade": 25, "email": "ana@email.com"},
-    {"nome": "Bruno", "idade": 30},
-    {"nome": "Carla", "idade": 28, "email": "carla@email.com"},
-    {"nome": "Diego"},
+numbers = [10, 20, 30, 40, 50]
+min_value = min(numbers)  # 10
+max_value = max(numbers)  # 50
+
+normalized = [(x - min_value) / (max_value - min_value) for x in numbers]
+print(normalized)
+
+
+# Exercise 8: Filtering Missing Data
+# Given a list of dictionaries representing user data, filter those who have a missing specific field.
+
+users = [
+    {"name": "Ana", "age": 25, "email": "ana@email.com"},
+    {"name": "Bruno", "age": 30},
+    {"name": "Carla", "age": 28, "email": "carla@email.com"},
+    {"name": "Diego"},
 ]
 
-campo = "email"
+field = "email"
 
-usuarios_com_campo_faltando = []
+users_with_missing_field = []
 
-for usuario in usuarios:
-    #Verifica se o campo está ausente
-    if campo not in usuario:
-        usuarios_com_campo_faltando.append(usuario)
+for user in users:
+    # Check if the field is missing
+    if field not in user:
+        users_with_missing_field.append(user)
 
-print(usuarios_com_campo_faltando)
+print(users_with_missing_field)
 
-### Exercício 9. Extração de Subconjuntos de Dados
-# Objetivo:** Dada uma lista de números, extrair apenas aqueles que são pares.
 
-numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+# Exercise 9: Extracting Subsets of Data
+# Given a list of numbers, extract only those that are even.
 
-numeros_pares = []
+numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-for numero in numeros:
-    if numero % 2 == 0:
-        numeros_pares.append(numero)
+even_numbers = []
 
-print(numeros_pares)
+for number in numbers:
+    if number % 2 == 0:
+        even_numbers.append(number)
 
-### Exercício 10. Agregação de Dados por Categoria
-# Objetivo:** Dado um conjunto de registros de vendas, calcular o total de vendas por categoria.
+print(even_numbers)
 
-vendas = [
-    {"categoria": "Eletrônicos", "valor": 1000},
-    {"categoria": "Vestuário", "valor": 500},
-    {"categoria": "Eletrônicos", "valor": 1500},
-    {"categoria": "Alimentos", "valor": 300},
-    {"categoria": "Vestuário", "valor": 700},
-    {"categoria": "Alimentos", "valor": 200}
+
+# Exercise 10: Data Aggregation by Category
+# Given a set of sales records, calculate the total sales by category.
+
+sales = [
+    {"category": "Electronics", "value": 1000},
+    {"category": "Clothing", "value": 500},
+    {"category": "Electronics", "value": 1500},
+    {"category": "Food", "value": 300},
+    {"category": "Clothing", "value": 700},
+    {"category": "Food", "value": 200}
 ]
 
-# Dicionário para armazenar o total de vendas por categoria
-totais_por_categoria = {}
+# Dictionary to store total sales by category
+total_by_category = {}
 
-# Percorrendo os registros de vendas
-for venda in vendas:
-    categoria = venda["categoria"]
-    valor = venda["valor"]
+# Loop through sales records
+for sale in sales:
+    category = sale["category"]
+    value = sale["value"]
     
-    # Se a categoria já existir no dicionário, soma o valor
-    if categoria in totais_por_categoria:
-        totais_por_categoria[categoria] += valor
+    # If the category already exists in the dictionary, add the value
+    if category in total_by_category:
+        total_by_category[category] += value
     else:
-        # Caso a categoria não exista, adiciona ela ao dicionário com o valor da venda
-        totais_por_categoria[categoria] = valor
+        # If the category doesn't exist, add it to the dictionary with the sale value
+        total_by_category[category] = value
 
-# Exibindo o total de vendas por categoria
-print(totais_por_categoria)
+# Display total sales by category
+print(total_by_category)
 
-### Exercícios com WHILE
 
-### Exercício 11. Leitura de Dados até Flag
-# Ler dados de entrada até que uma palavra-chave específica ("sair") seja fornecida.
+### Exercises with WHILE
 
-# Lista para armazenar as entradas do usuário
-entradas = []
+# Exercise 11: Reading Data until Flag
+# Read input data until a specific keyword ("exit") is provided.
 
-# Laço para ler dados até o usuário digitar "sair"
+# List to store user inputs
+inputs = []
+
+# Loop to read data until the user types "exit"
 while True:
-    dado = input("Digite algo (ou 'sair' para finalizar): ")
+    data = input("Type something (or 'exit' to finish): ")
     
-    if dado.lower() == "sair":
-        break  # Sai do laço se o usuário digitar 'sair'
+    if data.lower() == "exit":
+        break  # Exit the loop if the user types 'exit'
     
-    # Adiciona a entrada à lista
-    entradas.append(dado)
+    # Add input to the list
+    inputs.append(data)
 
-# Exibindo todas as entradas feitas pelo usuário
-print("Entradas registradas:")
-for entrada in entradas:
-    print(entrada)
+# Display all inputs made by the user
+print("Registered inputs:")
+for entry in inputs:
+    print(entry)
 
 
-### Exercício 12. Validação de Entrada
-# Solicitar ao usuário um número dentro de um intervalo específico até que a entrada seja válida.
+# Exercise 12: Input Validation
+# Ask the user for a number within a specific range until the input is valid.
 
-# Definindo o intervalo
-minimo = 1
-maximo = 10
+# Defining the range
+min_value = 1
+max_value = 10
 
-# Laço para solicitar a entrada até que seja válida
+# Loop to request input until it's valid
 while True:
     try:
-        # Solicita o número ao usuário
-        numero = int(input(f"Digite um número entre {minimo} e {maximo}: "))
+        # Ask the user for a number
+        number = int(input(f"Enter a number between {min_value} and {max_value}: "))
         
-        # Verifica se o número está dentro do intervalo
-        if minimo <= numero <= maximo:
-            print(f"Você digitou um número válido: {numero}")
-            break  # Sai do laço se o número for válido
+        # Check if the number is within the range
+        if min_value <= number <= max_value:
+            print(f"You entered a valid number: {number}")
+            break  # Exit the loop if the number is valid
         else:
-            print(f"Erro: O número deve estar entre {minimo} e {maximo}. Tente novamente.")
+            print(f"Error: The number must be between {min_value} and {max_value}. Try again.")
     
     except ValueError:
-        print("Erro: Por favor, digite um número válido.")
+        print("Error: Please enter a valid number.")
 
 
-### Exercício 13. Consumo de API Simulado
-# Simular o consumo de uma API paginada, onde cada "página" de dados é processada em loop até que não haja mais páginas.
+# Exercise 13: Simulated API Consumption
+# Simulate consuming a paginated API, where each "page" of data is processed in a loop until there are no more pages.
 
-# Função para simular a API paginada
-def consumir_api_paginada(total_paginas, itens_por_pagina):
-    # Simulando os dados da API (um total de itens)
-    total_itens = total_paginas * itens_por_pagina
-    dados = [f"Item {i+1}" for i in range(total_itens)]
+# Function to simulate paginated API consumption
+def consume_paginated_api(total_pages, items_per_page):
+    # Simulating API data (a total of items)
+    total_items = total_pages * items_per_page
+    data = [f"Item {i+1}" for i in range(total_items)]
     
-    # Páginas a serem processadas
-    pagina_atual = 0
-    while pagina_atual < total_paginas:
-        inicio = pagina_atual * itens_por_pagina
-        fim = inicio + itens_por_pagina
-        pagina = dados[inicio:fim]
+    # Pages to be processed
+    current_page = 0
+    while current_page < total_pages:
+        start = current_page * items_per_page
+        end = start + items_per_page
+        page = data[start:end]
         
-        # Simulando o processamento da página
-        print(f"Processando Página {pagina_atual + 1}: {pagina}")
+        # Simulate processing the page
+        print(f"Processing Page {current_page + 1}: {page}")
         
-        # Passa para a próxima página
-        pagina_atual += 1
+        # Move to the next page
+        current_page += 1
 
-# Definindo as configurações da API
-total_paginas = 5  # Total de páginas a serem consumidas
-itens_por_pagina = 3  # Quantidade de itens por página
+# Defining the API configurations
+total_pages = 5  # Total pages to consume
+items_per_page = 3  # Number of items per page
 
-# Chamando a função para consumir a API
-consumir_api_paginada(total_paginas, itens_por_pagina)
+# Calling the function to consume the API
+consume_paginated_api(total_pages, items_per_page)
 
 
-### Exercício 14. Tentativas de Conexão
-# Simular tentativas de reconexão a um serviço com um limite máximo de tentativas.
+# Exercise 14: Connection Attempts
+# Simulate attempts to reconnect to a service with a maximum number of attempts.
 
 import random
 import time
 
-# Função para simular uma tentativa de conexão
-def tentativa_de_conexao(max_tentativas):
-    tentativas = 0
+# Function to simulate a connection attempt
+def connection_attempt(max_attempts):
+    attempts = 0
     
-    while tentativas < max_tentativas:
-        tentativas += 1
-        print(f"Tentativa {tentativas} de {max_tentativas}...")
+    while attempts < max_attempts:
+        attempts += 1
+        print(f"Attempt {attempts} of {max_attempts}...")
         
-        # Simula o sucesso ou falha da conexão (50% de chance de sucesso)
+        # Simulate success or failure of the connection (50% chance of success)
         if random.choice([True, False]):
-            print("Conexão bem-sucedida!")
+            print("Connection successful!")
             break
         else:
-            print("Falha na conexão. Tentando novamente...")
-            time.sleep(2)  # Pausa de 2 segundos entre as tentativas
+            print("Connection failed. Retrying...")
+            time.sleep(2)  # 2 seconds pause between attempts
 
-    # Se atingiu o máximo de tentativas sem sucesso
-    if tentativas == max_tentativas:
-        print("Limite de tentativas alcançado. Não foi possível conectar ao serviço.")
+    # If the maximum attempts are reached without success
+    if attempts == max_attempts:
+        print("Max attempts reached. Could not connect to the service.")
 
-# Número máximo de tentativas
-max_tentativas = 5
+# Maximum number of attempts
+max_attempts = 5
 
-# Chamando a função para tentar a conexão
-tentativa_de_conexao(max_tentativas)
+# Calling the function to try the connection
+connection_attempt(max_attempts)
 
 
-### Exercício 15. Processamento de Dados com Condição de Parada
-# Processar itens de uma lista até encontrar um valor específico que indica a parada.
+# Exercise 15: Data Processing with Stop Condition
+# Process items in a list until a specific value indicating stop is found.
 
-# Lista de itens
-itens = [10, 20, 30, 40, 50, "parada", 60, 70]
+# List of items
+items = [10, 20, 30, 40, 50, "stop", 60, 70]
 
-# Valor que indica a parada
-valor_de_parada = "parada"
+# Value indicating stop
+stop_value = "stop"
 
-# Processando os itens até encontrar o valor de parada
-for item in itens:
-    if item == valor_de_parada:
-        print(f"Valor '{valor_de_parada}' encontrado. Parando o processamento.")
-        break  # Interrompe o laço quando encontra o valor de parada
+# Process items until the stop value is found
+for item in items:
+    if item == stop_value:
+        print(f"Value '{stop_value}' found. Stopping the processing.")
+        break  # Stop the loop when the stop value is found
     else:
-        print(f"Processando item: {item}")
+        print(f"Processing item: {item}")
