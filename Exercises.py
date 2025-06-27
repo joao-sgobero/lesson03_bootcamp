@@ -147,22 +147,170 @@ print(usuarios_com_campo_faltando)
 ### Exercício 9. Extração de Subconjuntos de Dados
 # Objetivo:** Dada uma lista de números, extrair apenas aqueles que são pares.
 
+numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+numeros_pares = []
+
+for numero in numeros:
+    if numero % 2 == 0:
+        numeros_pares.append(numero)
+
+print(numeros_pares)
+
 ### Exercício 10. Agregação de Dados por Categoria
 # Objetivo:** Dado um conjunto de registros de vendas, calcular o total de vendas por categoria.
+
+vendas = [
+    {"categoria": "Eletrônicos", "valor": 1000},
+    {"categoria": "Vestuário", "valor": 500},
+    {"categoria": "Eletrônicos", "valor": 1500},
+    {"categoria": "Alimentos", "valor": 300},
+    {"categoria": "Vestuário", "valor": 700},
+    {"categoria": "Alimentos", "valor": 200}
+]
+
+# Dicionário para armazenar o total de vendas por categoria
+totais_por_categoria = {}
+
+# Percorrendo os registros de vendas
+for venda in vendas:
+    categoria = venda["categoria"]
+    valor = venda["valor"]
+    
+    # Se a categoria já existir no dicionário, soma o valor
+    if categoria in totais_por_categoria:
+        totais_por_categoria[categoria] += valor
+    else:
+        # Caso a categoria não exista, adiciona ela ao dicionário com o valor da venda
+        totais_por_categoria[categoria] = valor
+
+# Exibindo o total de vendas por categoria
+print(totais_por_categoria)
 
 ### Exercícios com WHILE
 
 ### Exercício 11. Leitura de Dados até Flag
 # Ler dados de entrada até que uma palavra-chave específica ("sair") seja fornecida.
 
+# Lista para armazenar as entradas do usuário
+entradas = []
+
+# Laço para ler dados até o usuário digitar "sair"
+while True:
+    dado = input("Digite algo (ou 'sair' para finalizar): ")
+    
+    if dado.lower() == "sair":
+        break  # Sai do laço se o usuário digitar 'sair'
+    
+    # Adiciona a entrada à lista
+    entradas.append(dado)
+
+# Exibindo todas as entradas feitas pelo usuário
+print("Entradas registradas:")
+for entrada in entradas:
+    print(entrada)
+
+
 ### Exercício 12. Validação de Entrada
 # Solicitar ao usuário um número dentro de um intervalo específico até que a entrada seja válida.
+
+# Definindo o intervalo
+minimo = 1
+maximo = 10
+
+# Laço para solicitar a entrada até que seja válida
+while True:
+    try:
+        # Solicita o número ao usuário
+        numero = int(input(f"Digite um número entre {minimo} e {maximo}: "))
+        
+        # Verifica se o número está dentro do intervalo
+        if minimo <= numero <= maximo:
+            print(f"Você digitou um número válido: {numero}")
+            break  # Sai do laço se o número for válido
+        else:
+            print(f"Erro: O número deve estar entre {minimo} e {maximo}. Tente novamente.")
+    
+    except ValueError:
+        print("Erro: Por favor, digite um número válido.")
+
 
 ### Exercício 13. Consumo de API Simulado
 # Simular o consumo de uma API paginada, onde cada "página" de dados é processada em loop até que não haja mais páginas.
 
+# Função para simular a API paginada
+def consumir_api_paginada(total_paginas, itens_por_pagina):
+    # Simulando os dados da API (um total de itens)
+    total_itens = total_paginas * itens_por_pagina
+    dados = [f"Item {i+1}" for i in range(total_itens)]
+    
+    # Páginas a serem processadas
+    pagina_atual = 0
+    while pagina_atual < total_paginas:
+        inicio = pagina_atual * itens_por_pagina
+        fim = inicio + itens_por_pagina
+        pagina = dados[inicio:fim]
+        
+        # Simulando o processamento da página
+        print(f"Processando Página {pagina_atual + 1}: {pagina}")
+        
+        # Passa para a próxima página
+        pagina_atual += 1
+
+# Definindo as configurações da API
+total_paginas = 5  # Total de páginas a serem consumidas
+itens_por_pagina = 3  # Quantidade de itens por página
+
+# Chamando a função para consumir a API
+consumir_api_paginada(total_paginas, itens_por_pagina)
+
+
 ### Exercício 14. Tentativas de Conexão
 # Simular tentativas de reconexão a um serviço com um limite máximo de tentativas.
 
+import random
+import time
+
+# Função para simular uma tentativa de conexão
+def tentativa_de_conexao(max_tentativas):
+    tentativas = 0
+    
+    while tentativas < max_tentativas:
+        tentativas += 1
+        print(f"Tentativa {tentativas} de {max_tentativas}...")
+        
+        # Simula o sucesso ou falha da conexão (50% de chance de sucesso)
+        if random.choice([True, False]):
+            print("Conexão bem-sucedida!")
+            break
+        else:
+            print("Falha na conexão. Tentando novamente...")
+            time.sleep(2)  # Pausa de 2 segundos entre as tentativas
+
+    # Se atingiu o máximo de tentativas sem sucesso
+    if tentativas == max_tentativas:
+        print("Limite de tentativas alcançado. Não foi possível conectar ao serviço.")
+
+# Número máximo de tentativas
+max_tentativas = 5
+
+# Chamando a função para tentar a conexão
+tentativa_de_conexao(max_tentativas)
+
+
 ### Exercício 15. Processamento de Dados com Condição de Parada
 # Processar itens de uma lista até encontrar um valor específico que indica a parada.
+
+# Lista de itens
+itens = [10, 20, 30, 40, 50, "parada", 60, 70]
+
+# Valor que indica a parada
+valor_de_parada = "parada"
+
+# Processando os itens até encontrar o valor de parada
+for item in itens:
+    if item == valor_de_parada:
+        print(f"Valor '{valor_de_parada}' encontrado. Parando o processamento.")
+        break  # Interrompe o laço quando encontra o valor de parada
+    else:
+        print(f"Processando item: {item}")
